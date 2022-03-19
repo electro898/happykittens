@@ -602,13 +602,9 @@ aside {
 
 
 
-
-
-
-
 @media screen and (max-width: 1000px) {
     nav  {
-        padding: 5px 0px;
+        padding: 5x 0px;
         height: auto;
     }
     nav div div > ul > li {
@@ -667,5 +663,14 @@ aside {
         max-width: 100%;
     }
     
-    
+    .header {
+        margin-right:-15px;
+        margin-left:-15px;
+        margin-top:-1px;     
+            }
+    .full-article {
+                 
+                  }
+    .row { margin-right: -25px;
+                  margin-left: -25px; }
 }
