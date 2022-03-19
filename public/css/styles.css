@@ -12,12 +12,15 @@ body {
 }
 
 .row {
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-top: -25px;
 }
 
 .header {
-    background-color: white;
+background-color: white;
     padding: 10px 0px;
-    margin-top: 5px;
+    margin-top: 1px;
     
 }
 .header img {
@@ -514,7 +517,7 @@ aside {
 .full-article {
     background-color: #ffffff;
     overflow: auto;
-    padding: 10px;
+    padding: 5px;
 }
 .full-article div {
     margin-bottom: 30px;
