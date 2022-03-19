@@ -25,6 +25,7 @@ background-color: white;
 }
 .header img {
     max-height: 100px;
+    margin-left: 15px;
 }
  
 .break-news {
