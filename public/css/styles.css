@@ -14,7 +14,7 @@ body {
 .row {
     margin-right: -15px;
     margin-left: -15px;
-    margin-top: -25px;
+    margin-top: -15px;
 }
 
 .header {
@@ -61,6 +61,8 @@ nav {
     background-color: #67c0ff;
     margin-bottom: 20px;
     height: 64px;
+    margin-left: -15px;
+    margin-right: -15px;
     
 }
 nav div div > ul {
@@ -332,7 +334,6 @@ a:hover .article h5, a:hover .main h5{
 
 .sidebar-label {
 text-align: center;
-    margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
 }
