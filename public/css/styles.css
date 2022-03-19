@@ -647,10 +647,16 @@ aside {
     nav {
         display: none;
     }
-    .menu .menu-open{
-        display: block;
-    }
+  .menu {display: block;
+  }
 
+    .menu-close, .menu .menu-open{
+        display: block;
+        text-align: right;
+        top: -40px;
+        position: relative;
+        margin-bottom: -25px;
+    }
     .subcat {
         position: relative;
         width: 100%;
