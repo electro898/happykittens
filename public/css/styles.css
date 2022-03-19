@@ -12,9 +12,8 @@ body {
 }
 
 .row {
-    margin-right: -15px;
-    margin-left: -15px;
-    margin-top: -15px;
+    margin-right: 8px;
+    margin-left: 8px;
 }
 
 .header {
