@@ -1,30 +1,120 @@
-// header
-include ./header.pug
-
-.container
- .row
-  main.col-lg-8
+head
   
-    section
-        .full-article
-            h4= articleQuery[0].title
-            div
-                p= ` ${new Date(articleQuery[0].date).getDate()}, ${new Date(articleQuery[0].date).getMonth()+1}, ${new Date(articleQuery[0].date).getFullYear()} `
-                    span.fa.fa-clock
-                p
-                    span.fa.fa-eye= ` ${articleQuery[0].views} `
-            img.img-fluid.img-thumbnail(src=`/uploads/${articleQuery[0].image}` alt='image')
+  if path.match(/^\/cat/i)
 
-            span!= articleQuery[0].content
+    - var newPath = path.replace('/cat/', '')
+    each cat in category
+      if cat.name == newPath
+        title= cat.name
+        meta(name='Description' content= `${info[0].description.substring(0, 150)}...`)
+        meta(name='robots' content='index,follow')
+        meta(name='keywords' content= `${cat.name}, ${info[0].keywords}`)
+        link(rel='icon' href= `${url}/images/${info[0].image}` type='image/x-icon')
+        meta(property='og:url' content= `${url}/uploads/${article.image}`)
+        meta(property='og:type' content='website')
+        meta(property='og:title' content= `${cat.name}`)
+        meta(property='og:description' content= `${info[0].description.substring(0, 100)}...`)
+        meta(property='og:image' content= `${url}/images/${info[0].image}`)
+    each subcat in subCategory
+      if subcat.name == newPath
+        title= subcat.name
+        meta(name='Description' content= `${info[0].description.substring(0, 150)}...`)
+        meta(name='robots' content='index,follow')
+        meta(name='keywords' content= `${subcat.name}, ${info[0].keywords}`)
+        link(rel='icon' href= `${url}/images/${info[0].image}` type='image/x-icon')
+        meta(property='og:url' content= `${url}/uploads/${article.image}`)
+        meta(property='og:type' content='website')
+        meta(property='og:title' content= `${subcat.name}`)
+        meta(property='og:description' content= `${subcat.name}`)
+        meta(property='og:image' content= `${url}/images/${info[0].image}`)
 
+  else if path.match(/^\/article/)
+    
+    - var newPath = path.replace('/article/', '')
+    each article in articles
+      if article.num == newPath
+        title= article.title
+        meta(name='Description' content= `${article.content.substring(0, 150)}...`)
+        meta(name='robots' content='index,nofollow')
+        meta(name='keywords' content= `${article.keywords}`)
+        link(rel='icon' href= `${url}/images/${info[0].image}` type='image/x-icon')
+        meta(property='og:type' content='article')
+        meta(property='og:title' content= `${article.title}`)
+        meta(property='og:site_name' content= `${article.title}`)
+        meta(property='og:url' content= `${url}/uploads/${article.image}`)
+        meta(property='og:description' content= `${article.content.substring(0, 100)}...`)
+        meta(property='og:image' content= `${url}/uploads/${article.image}`)
+        meta(property='fb:app_id' content='679501113200139')
+        meta(property='fb:admins' content='Admin')
+        meta(property='article:section' content='Animal')
+        meta(property='fb:admins' content='admin')
+        meta(property='og:type' content='video.other')
+        meta(property='og:locale' content='en_US')
+        meta(property='article:publisher' content='https://www.facebook.com/animmalslove/')
+        
+  else 
+    title= path
+    meta(name='Description' content= `${info[0].description.substring(0, 150)}...`)
+    meta(name='robots' content='index,follow')
+    meta(name='keywords' content= `${info[0].keywords}`)
+    link(rel='icon' href= `${url}/images/${info[0].image}` type='image/x-icon')
+    if path == 'Home'
+      meta(property='og:url' content= `${url}`)
+    else
+      meta(property='og:url' content= `${url}/${path}`)
+    meta(property='og:type' content='website')
+    meta(property='og:title' content= `${info[0].title}`)
+    meta(property='og:description' content= `${info[0].description.substring(0, 100)}...`)
+    meta(property='og:image' content= `${url}/images/${info[0].image}`)
 
-  // sidebar
-  include ./sidebar.pug
+      
+  meta(name='viewport' content='initial-scale=1.0, minimum-scale=1.0, height=device-height, width=device-width')
+  meta(charset='utf-8')
+  link(rel='stylesheet' href='/css/bootstrap.min.css')
+  link(rel='stylesheet' href='/icons/css/all.css')
+  link(rel='stylesheet' href='/css/styles.css')
+  
+.container
+  header
+    .row.header
+      .col-4.mr-auto
+        a(href="/")
+          img.img-fluid(src= `/images/${info[0].image}` alt='logo')
+  .menu
+    span.fa.fa-bars.menu-open(onclick='obj.menu()')
+    span.fa.fa-times.menu-close(onclick='obj.menu()')
+  nav
+    .row
+      .col-md-11
+        ul
+          li
+            a(href='/') Home
+         
+          each val in category
+            - var subcat=0
+            each subCat in subCategory
+              if val._id == subCat.category_id
+                - subcat = 1
+                
+            if subcat == 1
+              li
+                span(onclick="obj.subCategory(this)")= ` ${val.name} ` 
+                  span.fa.fa-sort-down
+                .subcat
+                  ul
+                    each subCat in subCategory
+                      if val._id == subCat.category_id
+                        li
+                          a(href=`/cat/${subCat.name}`)= subCat.name
 
- 
-  // footer
-  include ./footer.pug
-script(src='/scripts/script.js')
-script(src='/scripts/slideshow.js')
-script(src='/scripts/analytics.js')
-<script src="https://jsc.mgid.com/h/a/happykittens.herokuapp.com.1288552.js" async></script>
+            else 
+              li
+                a(href= `/cat/${val.name}`)= val.name 
+
+                
+     
+      .col-lg-1.ml-auto
+        form.search-form(action='/' method='GET')
+          span.fa.fa-search(onclick='searchClicked()')
+          span.fa.fa-times(onclick='searchClicked()')
+          input(type='text' name='search' placeholder='Search on something' autofocus='')
