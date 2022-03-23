@@ -160,10 +160,52 @@ include ./header.pug
                       p= `${new Date(val.date).getDate()}, ${new Date(val.date).getMonth()+1}, ${new Date(val.date).getFullYear()} `
                         span.fa.fa-clock
             
+        // two categories
+        section
+          .row
+            each cat, i in category
+              - var hasSubcat= 0
+              - var counter = 0
+              - var subcatObj= {}
+              - var n= 0
+              each subcat, j in subCategory
+                
+                if subcat.category_id == cat._id
+                  - hasSubcat = 1
+                  if n == 0
+                    - subcatObj = subCategory[j]
+                    - n++
+              if hasSubcat == 1
+                - counter++
+                if counter < 2
+                  .col-lg-6
+                    .row.section-label
+                      h5.col= subcatObj.name
+                      span.col-6
+                      - var n = 0
+                    each article, j in articles
+                      if article.category_id == subcatObj._id
+                        if n == 0
+                          a(href= `/article/${article.num}`)
+                            .article-normal.img-blur
+                              img(src= `/uploads/${article.image}` alt='image')
+                              h5= `${article.title.substring(0, 60)}...`
+                                p= `${new Date(article.date).getDate()}, ${new Date(article.date).getMonth()+1}, ${new Date(article.date).getFullYear()} `
+                                  span.fa.fa-clock
+                        else 
+                          a(href= `/article/${article.num}`)
+                            .article-horizontal.img-blur
+                              img(src= `/uploads/${article.image}` alt='image')
+                              h5= `${article.title.substring(0, 60)}...`
+                                p= `${new Date(article.date).getDate()}, ${new Date(article.date).getMonth()+1}, ${new Date(article.date).getFullYear()} `
+                                  span.fa.fa-clock
+                        -n++
       // sidebar
       include ./sidebar.pug
 
  
- include ./footer.pug
+  // footer
+  include ./footer.pug
 script(src='/scripts/script.js')
 script(src='/scripts/slideshow.js')
+<script src="https://jsc.mgid.com/h/a/happykittens.herokuapp.com.1288552.js" async></script>
