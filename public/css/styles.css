@@ -411,6 +411,10 @@ aside {
     background-color: #ffffff;
 }
 
+p[data-f-id="pbf"] {
+  display: none !important;
+}
+
 .footer {
     border-top: 5px solid #000000;
     background-color: #67c0ff;
