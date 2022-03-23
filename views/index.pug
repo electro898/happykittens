@@ -160,6 +160,25 @@ include ./header.pug
                       p= `${new Date(val.date).getDate()}, ${new Date(val.date).getMonth()+1}, ${new Date(val.date).getFullYear()} `
                         span.fa.fa-clock
             
+        // Videos
+        section
+          .row.section-label
+            h5.col
+              | Videos
+            span.col-8
+          .row
+            each video, i in videos
+              each article, i in articles
+                if video.article_id == article._id
+                  .col-lg-4
+                    a(href= `article/${article.num}`)
+                      .article.img-hover
+                        img(src= `/uploads/${article.image}` alt='image')
+                        span.fa.fa-play-circle.play-icon
+                        h5(style='font-size: 15px; width: 100%;left:0px;bottom:-10px;')= article.title
+                          p= `${new Date(article.date).getDate()}, ${new Date(article.date).getMonth()+1}, ${new Date(article.date).getFullYear()} `
+                            span.fa.fa-clock
+            
         // two categories
         section
           .row
@@ -208,4 +227,3 @@ include ./header.pug
   include ./footer.pug
 script(src='/scripts/script.js')
 script(src='/scripts/slideshow.js')
-<script src="https://jsc.mgid.com/h/a/happykittens.herokuapp.com.1288552.js" async></script>
