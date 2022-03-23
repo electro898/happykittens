@@ -28,6 +28,14 @@ head
         meta(property='og:description' content= `${subcat.name}`)
         meta(property='og:image' content= `${url}/images/${info[0].image}`)
 
+  meta(name='viewport' content='initial-scale=1.0, minimum-scale=1.0, height=device-height, width=device-width')
+  meta(charset='utf-8')
+  link(rel='stylesheet' href='/css/bootstrap.min.css')
+  link(rel='stylesheet' href='/icons/css/all.css')
+  link(rel='stylesheet' href='/css/styles.css')
+  
+  
+  body
   else if path.match(/^\/article/)
     
     - var newPath = path.replace('/article/', '')
@@ -66,44 +74,6 @@ head
     meta(property='og:title' content= `${info[0].title}`)
     meta(property='og:description' content= `${info[0].description.substring(0, 100)}...`)
     meta(property='og:image' content= `${url}/images/${info[0].image}`)
-
-      
-  meta(name='viewport' content='initial-scale=1.0, minimum-scale=1.0, height=device-height, width=device-width')
-  meta(charset='utf-8')
-  link(rel='stylesheet' href='/css/bootstrap.min.css')
-  link(rel='stylesheet' href='/icons/css/all.css')
-  link(rel='stylesheet' href='/css/styles.css')
-  
-  
-  body
-  
-   if path.match(/^\/cat/i)
-
-    - var newPath = path.replace('/cat/', '')
-    each cat in category
-      if cat.name == newPath
-        title= cat.name
-        meta(name='Description' content= `${info[0].description.substring(0, 150)}...`)
-        meta(name='robots' content='index,follow')
-        meta(name='keywords' content= `${cat.name}, ${info[0].keywords}`)
-        link(rel='icon' href= `${url}/images/${info[0].image}` type='image/x-icon')
-        meta(property='og:url' content= `${url}/uploads/${article.image}`)
-        meta(property='og:type' content='website')
-        meta(property='og:title' content= `${cat.name}`)
-        meta(property='og:description' content= `${info[0].description.substring(0, 100)}...`)
-        meta(property='og:image' content= `${url}/images/${info[0].image}`)
-    each subcat in subCategory
-      if subcat.name == newPath
-        title= subcat.name
-        meta(name='Description' content= `${info[0].description.substring(0, 150)}...`)
-        meta(name='robots' content='index,follow')
-        meta(name='keywords' content= `${subcat.name}, ${info[0].keywords}`)
-        link(rel='icon' href= `${url}/images/${info[0].image}` type='image/x-icon')
-        meta(property='og:url' content= `${url}/uploads/${article.image}`)
-        meta(property='og:type' content='website')
-        meta(property='og:title' content= `${subcat.name}`)
-        meta(property='og:description' content= `${subcat.name}`)
-        meta(property='og:image' content= `${url}/images/${info[0].image}`)
   
 .container
   header
