@@ -1,7 +1,12 @@
-// header
+<!DOCTYPE html>
+<html lang="en">
+<head>
 include ./header.pug
+</head>
+  <meta charset="UTF-8">
+<body>
 
-.container
+ .container
  .row
   main.col-lg-8
   
@@ -16,8 +21,7 @@ include ./header.pug
             img.img-fluid.img-thumbnail(src=`/uploads/${articleQuery[0].image}` alt='image')
 
             span!= articleQuery[0].content
-
-
+   
   // sidebar
   include ./sidebar.pug
 
@@ -28,3 +32,6 @@ script(src='/scripts/script.js')
 script(src='/scripts/slideshow.js')
 script(src='/scripts/analytics.js')
 <script src="https://jsc.mgid.com/h/a/happykittens.herokuapp.com.1288552.js" async></script>
+
+</body>
+</html>
