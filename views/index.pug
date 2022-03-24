@@ -2,6 +2,51 @@
 include ./header.pug
 
 .container
+  header
+    .row.header
+      .col-4.mr-auto
+        a(href="/")
+          img.img-fluid(src= `/images/${info[0].image}` alt='logo')
+  .menu
+    span.fa.fa-bars.menu-open(onclick='obj.menu()')
+    span.fa.fa-times.menu-close(onclick='obj.menu()')
+  nav
+    .row
+      .col-md-11
+        ul
+          li
+            a(href='/') Home
+         
+          each val in category
+            - var subcat=0
+            each subCat in subCategory
+              if val._id == subCat.category_id
+                - subcat = 1
+                
+            if subcat == 1
+              li
+                span(onclick="obj.subCategory(this)")= ` ${val.name} ` 
+                  span.fa.fa-sort-down
+                .subcat
+                  ul
+                    each subCat in subCategory
+                      if val._id == subCat.category_id
+                        li
+                          a(href=`/cat/${subCat.name}`)= subCat.name
+
+            else 
+              li
+                a(href= `/cat/${val.name}`)= val.name 
+
+                
+     
+      .col-lg-1.ml-auto
+        form.search-form(action='/' method='GET')
+          span.fa.fa-search(onclick='searchClicked()')
+          span.fa.fa-times(onclick='searchClicked()')
+          input(type='text' name='search' placeholder='Search on something' autofocus='')
+
+.container
   section.slider
     .row
       .col-md-4
@@ -208,3 +253,4 @@ include ./header.pug
   include ./footer.pug
 script(src='/scripts/script.js')
 script(src='/scripts/slideshow.js')
+script(src='/scripts/analytics.js')
