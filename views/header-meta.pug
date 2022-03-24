@@ -33,7 +33,6 @@ head
     - var newPath = path.replace('/article/', '')
     each article in articles
       if article.num == newPath
-        title= article.title
         meta(property='og:url' content= `${url}/uploads/${article.image}`)
         
   else 
@@ -45,7 +44,7 @@ head
     if path == 'Home'
       meta(property='og:url' content= `${url}`)
     else
-      meta(property='og:url' content= `${url}/uploads/${article.image}`)
+      meta(property='og:url' content= `${url}/${path}`)
     meta(property='og:type' content='website')
     meta(property='og:title' content= `${info[0].title}`)
     meta(property='og:description' content= `${info[0].description.substring(0, 100)}...`)

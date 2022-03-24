@@ -1,5 +1,78 @@
-// header
+<!DOCTYPE html>
+<html lang="en">
+
 include ./header.pug
+
+if path.match(/^\/article/)
+    
+    - var newPath = path.replace('/article/', '')
+    each article in articles
+      if article.num == newPath
+        title= article.title
+        meta(name='Description' content= `${article.content.substring(0, 150)}...`)
+        meta(name='robots' content='index,nofollow')
+        meta(name='keywords' content= `${article.keywords}`)
+        link(rel='icon' href= `${url}/images/${info[0].image}` type='image/x-icon')
+        meta(property='og:type' content='article')
+        meta(property='og:title' content= `${article.title}`)
+        meta(property='og:site_name' content= `${article.title}`)
+        meta(property='og:url' content= `${url}/uploads/${article.image}`)
+        meta(property='og:description' content= `${article.content.substring(0, 100)}...`)
+        meta(property='og:image' content= `${url}/uploads/${article.image}`)
+        meta(property='fb:app_id' content='679501113200139')
+        meta(property='fb:admins' content='Admin')
+        meta(property='article:section' content='Animal')
+        meta(property='fb:admins' content='admin')
+        meta(property='og:type' content='video.other')
+        meta(property='og:locale' content='en_US')
+        meta(property='article:publisher' content='https://www.facebook.com/animmalslove/')
+</head>
+<body>
+
+.container
+  header
+    .row.header
+      .col-4.mr-auto
+        a(href="/")
+          img.img-fluid(src= `/images/${info[0].image}` alt='logo')
+  .menu
+    span.fa.fa-bars.menu-open(onclick='obj.menu()')
+    span.fa.fa-times.menu-close(onclick='obj.menu()')
+  nav
+    .row
+      .col-md-11
+        ul
+          li
+            a(href='/') Home
+         
+          each val in category
+            - var subcat=0
+            each subCat in subCategory
+              if val._id == subCat.category_id
+                - subcat = 1
+                
+            if subcat == 1
+              li
+                span(onclick="obj.subCategory(this)")= ` ${val.name} ` 
+                  span.fa.fa-sort-down
+                .subcat
+                  ul
+                    each subCat in subCategory
+                      if val._id == subCat.category_id
+                        li
+                          a(href=`/cat/${subCat.name}`)= subCat.name
+
+            else 
+              li
+                a(href= `/cat/${val.name}`)= val.name 
+
+                
+     
+      .col-lg-1.ml-auto
+        form.search-form(action='/' method='GET')
+          span.fa.fa-search(onclick='searchClicked()')
+          span.fa.fa-times(onclick='searchClicked()')
+          input(type='text' name='search' placeholder='Search on something' autofocus='')
 
 .container
  .row
@@ -27,4 +100,7 @@ include ./header.pug
 script(src='/scripts/script.js')
 script(src='/scripts/slideshow.js')
 script(src='/scripts/analytics.js')
-<script src="https://jsc.mgid.com/h/a/happykittens.herokuapp.com.1288552.js" async></script>
+
+
+  </body>
+</html>
