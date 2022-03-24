@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Sample Site</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <style>
-    body { padding-top: 50px; }
-  </style>
-</head>
-<body>
-
-  .container
+.container
  .row
   main.col-lg-8
   
@@ -25,7 +13,8 @@
             img.img-fluid.img-thumbnail(src=`/uploads/${articleQuery[0].image}` alt='image')
 
             span!= articleQuery[0].content
-   
+
+
   // sidebar
   include ./sidebar.pug
 
@@ -36,6 +25,3 @@ script(src='/scripts/script.js')
 script(src='/scripts/slideshow.js')
 script(src='/scripts/analytics.js')
 <script src="https://jsc.mgid.com/h/a/happykittens.herokuapp.com.1288552.js" async></script>
-
-</body>
-</html>
